@@ -1,0 +1,85 @@
+<div >
+    <table>
+        <tr>
+            <td>
+                <div class="Watchlist">
+                    Watchlist <br/>
+                    {{watchlistCount}}
+                </div>    
+            </td>
+            <td>
+                Filter Planter 
+                Category
+                
+                    <select #category (change)="getFilterData(category.value)">
+                        <option> Plant </option>
+                        <option> Seed </option>
+                    </select>
+                   
+            
+            </td>
+            <td>
+                Filter Planter 
+                Season
+                
+                    <select #bloomSeason (change)="getFilterData1(bloomSeason.value)">
+                        <option> Summer </option>
+                        <option> Winter </option>
+                        <option> Spring </option>
+                    </select>
+                   
+            
+            </td>
+            <td>
+                Filter Planter 
+                StarRating
+                
+                    <select #starRating (change)="getFilterData2(starRating.value)">
+                        <option> 2 </option>
+                        <option> 3 </option>
+                        <option> 4 </option>
+                        <option> 5 </option>
+                    </select>
+                   
+            
+            </td>
+            
+        </tr>
+    </table>
+   
+
+
+</div>
+
+
+
+<hr/>
+<div *ngFor="let p of allPlanter">
+<table>
+    <tr>
+        <td> <img src="/assets/images/{{p.imageName}}" alt="Planter image" width="120px" height="150px"> </td>
+        <td> 
+            <h2>{{p.planterName}} </h2>
+            <p> {{p.about}} </p>
+            <hr/>
+            <span>Planter Price <span [style]="p.price<75?priceLowCss:priceNormalCSS" >{{p.price|currency}}    </span>  
+                <i *ngIf="p.discount>0"> 
+                    with {{p.discount}}% Off 
+                    <span *ngIf="p.discount>9">
+                        <b style="color: blue; font-family: Georgia, 'Times New Roman', Times, serif;"><u> Recommended</u></b>
+                    </span>
+                </i> 
+        
+            </span> 
+            <br/>
+            Planter Height {{p.height}} cm
+            <hr/>
+            <button value="{{p.planterId}}" (click)="goForBuy(planter.value)" #planter> Buy Planter </button>
+            <button value="{{p.planterId}}" (click)="addWatchlist(planter.value)" #planter> Add to Watchlist </button>
+                
+            
+        </td>
+        
+    </tr>
+</table>
+</div>
